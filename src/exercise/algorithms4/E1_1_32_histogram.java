@@ -8,7 +8,7 @@ import edu.princeton.cs.algs4.StdOut;
  * @author lsp
  *
  */
-public class E1_1_32 {
+public class E1_1_32_histogram {
 
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]);
@@ -54,5 +54,6 @@ public class E1_1_32 {
 			}
 		}
 	}
+
 
 }

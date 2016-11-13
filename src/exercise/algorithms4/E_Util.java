@@ -1,5 +1,7 @@
 package exercise.algorithms4;
 
+import java.util.Random;
+
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
@@ -14,6 +16,36 @@ public class E_Util {
 		for(int i = 0; i < a.length; i++){
 			a[i] = StdRandom.uniform(n);
 		}
+	}
+	public static void initIntArrayFixedLen(int[] a, int len){
+		for(int i = 0; i < a.length; i++){
+			a[i] = random(len);
+		}
+	}
+	/**
+	 * 产生长度为len的随机数
+	 * @param len
+	 * @return
+	 */
+	public static int random(int len){
+		int r = StdRandom.uniform(1, 10);;
+		for(int i = 1; i <= len - 1; i++){
+			r = r * 10 + StdRandom.uniform(10);
+		}
+		return r;
+	}
+	/**
+	 * 产生长度为len的随机数，这种方法可能产生首位为0的数据
+	 * @param len
+	 * @return
+	 */
+	public static String makeNumber(int len) {
+		Random random = new Random();
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < len; i++) {
+			sb.append(random.nextInt(10));
+		}
+		return sb.toString();
 	}
 	/**
 	 * 初始化二维布尔数组
@@ -208,5 +240,84 @@ public class E_Util {
 		if(b == 0) return 0;
 		if(a % b == 0) return b;
 		return gcd(a, a % b);
+	}
+	
+	/**
+	 * 向量点乘
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public static double dot(double[] x, double[] y){
+		if(x.length != y.length) return 0.0;
+		double result = 0.0;
+		for(int i = 0; i < x.length; i++){
+			result += x[i] * y[i];
+		}
+		return result;
+	}
+	/**
+	 * 矩阵和矩阵之积
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static double[][] mult(double[][] a, double[][] b){
+		if(a[0].length != b.length) return null;
+		double[][] c = new double[a.length][b[0].length];
+		for(int i = 0; i < a.length; i++){
+			for(int j = 0; j < b[0].length; j++){
+				for(int k = 0; k < a[0].length; k++){
+					c[i][j] += a[i][k] * b[k][j];
+				}
+			}
+		}
+		return c;
+	}
+	/**
+	 * 矩阵转置
+	 * @param a
+	 * @return
+	 */
+	public static double[][] transpose(double[][] a){
+		double[][] b = new double[a[0].length][a.length];
+		for(int i = 0; i < a.length; i++){
+			for(int j = 0; j < a[0].length; j++){
+				b[j][i] = a[i][j];
+			}
+		}
+		return b;
+	}
+	/**
+	 * 矩阵和向量之积
+	 * @param a
+	 * @param x
+	 * @return
+	 */
+	public static double[] mult(double[][] a, double[] x){
+		if(a[0].length != x.length) return null;
+		double b[] = new double[a.length];
+		for(int i = 0; i < a.length; i++){
+			for(int j = 0; j < a[0].length; j++){
+				b[i] += a[i][j] * x[j];
+			}
+		}
+		return b;
+	}
+	/**
+	 * 向量和矩阵之积
+	 * @param y
+	 * @param a
+	 * @return
+	 */
+	public static double[] mult(double[] y, double[][] a){
+		if(y.length != a.length) return null;
+		double b[] = new double[a[0].length];
+		for(int i = 0; i < a[0].length; i++){
+			for(int j = 0; j < a.length; j++){
+				b[i] += y[j] * a[j][i];
+			}
+		}
+		return b;
 	}
 }
