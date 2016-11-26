@@ -241,6 +241,17 @@ public class E_Util {
 		if(a % b == 0) return b;
 		return gcd(a, a % b);
 	}
+	public static long gcd(long a, long b){
+		if(a < b){
+			long temp = a;
+			a = b;
+			b = temp;
+		}
+		StdOut.println(a + " -- " + b);
+		if(b == 0) return 0;
+		if(a % b == 0) return b;
+		return gcd(a, a % b);
+	}
 	
 	/**
 	 * ÏòÁ¿µã³Ë

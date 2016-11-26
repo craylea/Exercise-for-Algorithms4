@@ -2,9 +2,9 @@ package exercise.algorithms4.e1_2;
 
 public class SmartDate {
 
-	private int year;
-	private int month;
-	private int day;
+	private final int year;
+	private final int month;
+	private final int day;
 	
 	public SmartDate(int year, int month, int day) throws Exception{
 		if(year < 1970){
@@ -46,7 +46,26 @@ public class SmartDate {
 	public int day(){
 		return this.day;
 	}
-	
+	/**
+	 * ²ÌÀÕ£¨Zeller£©¹«Ê½ w=y+[y/4]+[c/4]-2c+[26(m+1)/10]+d-1
+	 * @return w % 7
+	 */
+	public int dayOfTeWeek(){
+		int c = year / 100;
+		int y = year % 100;
+		int m = month;
+		if(m == 1){
+			m = 13;
+		}
+		if(m == 2){
+			m = 14;
+		}
+		int w = y + y / 4 + c / 4 - 2 * c + 26 * (m + 1) / 10 + day - 1;
+		while(w < 0){
+			w = w + 7;
+		}
+		return w % 7 ; //== 0 ? 7 : w % 7;
+	}
 	
 	@Override
 	public String toString() {
