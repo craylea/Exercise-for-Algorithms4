@@ -1,39 +1,38 @@
 package exercise.algorithms4.e1_3;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
+public class LinkedList {
 
-public class E1_3_20 {
-
-	private static Node<String> first = new Node<>();
+	private Node<String> first;
 	
-	public static void main(String[] args) {
-		int k = Integer.parseInt(args[0]);
-		
-		
-		Node<String> p = null;
-		while(!StdIn.isEmpty()){
-			String value = StdIn.readString();
-			if(first.value == null){
-				first.value = value;
-				p = first;
-			}else{
-				Node<String> temp = new Node<>();
-				temp.value = value;
-				p.next = temp;
-				p = temp;
-			}
-		}
-		StdOut.println(delete(k));
-//		deleteLastItem();
-		p = first;
-		while(p != null){
-			StdOut.print(p.value + " ");
-			p = p.next;
-		}
+	public LinkedList(){
+		first = new Node<>();
 	}
-
-	public static int delete( int k){
+	public LinkedList(String value){
+		first = new Node<>();
+		first.value = value;
+	}
+	
+	public Node<String> add(String value){
+		Node<String> temp = new Node<>();
+		temp.value = value;
+		
+		if(first.value == null){
+			first = temp;
+		}else{
+			Node<String> p = first;
+			while(p.next != null){
+				p = p.next;
+			}
+			p.next = temp;
+		}
+		return temp;
+	}
+	
+	public Node<String> getFirstNode(){
+		return first;
+	}
+	
+	public int delete(int k){
 		if(first == null)
 			return -1;
 		if(k == 1){
@@ -66,7 +65,7 @@ public class E1_3_20 {
 	}
 	
 	// 1.3.19
-	public static void deleteLastItem(){
+	public void deleteLastItem(){
 		if(first == null)
 			return;
 		if(first.next == null){
@@ -80,5 +79,24 @@ public class E1_3_20 {
 			p = p.next;
 		}
 		pre.next = null;
+	}
+	
+	public boolean find(String key){
+		Node<String> p = first;
+		boolean isFound = false;
+		while(p != null){
+			if(p.value.equals(key)){
+				isFound = true;
+				break;
+			}
+			p = p.next;
+		}
+		return isFound;
+	}
+	
+	public void removeAfter(Node<String> item){
+		if(item != null && item.next != null){
+			item.next = null;
+		}
 	}
 }
