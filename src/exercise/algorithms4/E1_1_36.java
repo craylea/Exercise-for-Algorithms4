@@ -21,20 +21,20 @@ public class E1_1_36 {
 		double[] d = new double[M]; 
 		for(int i = 1; i <= N; i++){
 			// 方法一
-			init(a);
-			shuffle(a);
-			count(a, b);
+//			init(a);
+//			shuffle(a);
+//			count(a, b);
 			// 方法二
 //			initDouble(d);
 //			shuffle(d, b);
 			// 方法三
-//			initDouble(d);
-//			double[] c = new double[d.length];
-//			for(int j = 0; j < d.length; j++){
-//				c[j] = d[j];
-//			}
-//			shuffle(c);
-//			count(d, c, b);
+			initDouble(d);
+			double[] c = new double[d.length];
+			for(int j = 0; j < d.length; j++){
+				c[j] = d[j];
+			}
+			shuffle(c);
+			count(d, c, b);
 		}
 		StdOut.printf(FORMAT, " ");
 		for(int i = 0; i < b.length; i++){

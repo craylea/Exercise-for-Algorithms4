@@ -1,26 +1,26 @@
 package exercise.algorithms4.e1_3;
 
-public class DoublyLinkedList {
+public class DoublyLinkedList<T> {
 
-	private DoubleNode<String> first;
+	private DoubleNode<T> first;
 	private int size = 0;
 	
 	/**
 	 * 在链表尾增加节点
 	 * @param value
 	 */
-	public void add(String value){
+	public void add(T value){
 		if(isEmpty()){
 			first = new DoubleNode<>();
 			first.value = value;
 			first.pre = first;
 			first.next = first;
 		}else{
-			DoubleNode<String> p = first.pre;
+			DoubleNode<T> p = first.pre;
 //			while(p.next != first){
 //				p = p.next;
 //			}
-			DoubleNode<String> temp = new DoubleNode<>();
+			DoubleNode<T> temp = new DoubleNode<>();
 			temp.value = value;
 			temp.pre = p;
 			temp.next = p.next;
@@ -33,18 +33,18 @@ public class DoublyLinkedList {
 	 * 在链表头增加节点
 	 * @param value
 	 */
-	public void addFirst(String value){
+	public void addFirst(T value){
 		if(isEmpty()){
 			first = new DoubleNode<>();
 			first.value = value;
 			first.pre = first;
 			first.next = first;
 		}else{
-			DoubleNode<String> p = first.pre;
+			DoubleNode<T> p = first.pre;
 //			while(p.next != first){
 //				p = p.next;
 //			}
-			DoubleNode<String> temp = new DoubleNode<>();
+			DoubleNode<T> temp = new DoubleNode<>();
 			temp.value = value;
 			temp.pre = p;
 			temp.next = p.next;
@@ -58,15 +58,15 @@ public class DoublyLinkedList {
 	 * 从链表尾删除节点
 	 * @return
 	 */
-	public String delete(){
+	public T delete(){
 		if(isEmpty()) return null;
-		String item = null;
+		T item = null;
 		if(size == 1){
 			item = first.value;
 			first = null;
 		}else{
-			DoubleNode<String> p = first.pre;
-			DoubleNode<String> temp = p.pre;
+			DoubleNode<T> p = first.pre;
+			DoubleNode<T> temp = p.pre;
 			temp.next = first;
 			first.pre = temp;
 			item = p.value;
@@ -78,15 +78,15 @@ public class DoublyLinkedList {
 	 * 从链表头删除节点
 	 * @return
 	 */
-	public String deleteFirst(){
+	public T deleteFirst(){
 		if(isEmpty()) return null;
-		String item = null;
+		T item = null;
 		if(size == 1){
 			item = first.value;
 			first = null;
 		}else{
-			DoubleNode<String> p = first.pre;
-			DoubleNode<String> temp = first.next;
+			DoubleNode<T> p = first.pre;
+			DoubleNode<T> temp = first.next;
 			temp.pre = p;
 			p.next = temp;
 			item = first.value;
@@ -101,7 +101,7 @@ public class DoublyLinkedList {
 	 * @param value
 	 * @return 实际位置
 	 */
-	public int insertBefore(int index, String value){
+	public int insertBefore(int index, T value){
 		if(isEmpty()) {
 			add(value);
 			return 1;
@@ -111,13 +111,13 @@ public class DoublyLinkedList {
 			return 1;
 		}
 		int i = 1;
-		DoubleNode<String> p = first;
+		DoubleNode<T> p = first;
 		// 查找index节点
 		while(i < index && p.next != first){
 			p = p.next;
 			i++;
 		}
-		DoubleNode<String> temp = new DoubleNode<>();
+		DoubleNode<T> temp = new DoubleNode<>();
 		temp.value = value;
 		if(i != index){ // 没有找到index节点，那么新增加的节点作为最后一个节点
 			add(value);
@@ -141,15 +141,15 @@ public class DoublyLinkedList {
 	 * @param value
 	 * @return 实际位置
 	 */
-	public int insertAfter(int index, String value){
+	public int insertAfter(int index, T value){
 		return insertBefore(index + 1, value);
 	}
-	public String delete(int index){
-		String item = null;
+	public T delete(int index){
+		T item = null;
 		if(index == 1) {
 			item = deleteFirst();
 		}else{
-			DoubleNode<String> p = first;
+			DoubleNode<T> p = first;
 			int i = 1;
 			// 查找index节点
 			while(i < index && p.next != first){
@@ -169,7 +169,7 @@ public class DoublyLinkedList {
 	 * 获取链表的首节点
 	 * @return
 	 */
-	public DoubleNode<String> getFirstNode(){
+	public DoubleNode<T> getFirstNode(){
 		return first;
 	}
 	/**
@@ -179,5 +179,11 @@ public class DoublyLinkedList {
 	public boolean isEmpty(){
 		return size == 0;
 	}
-	
+	/**
+	 * 链表达小
+	 * @return
+	 */
+	public int size(){
+		return size;
+	}
 }

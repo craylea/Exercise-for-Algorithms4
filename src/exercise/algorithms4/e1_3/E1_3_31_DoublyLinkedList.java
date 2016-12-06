@@ -11,8 +11,8 @@ import edu.princeton.cs.algs4.StdOut;
 public class E1_3_31_DoublyLinkedList {
 
 	public static void main(String[] args) {
-		DoublyLinkedList list = new DoublyLinkedList();
-		DoublyLinkedList list2 = new DoublyLinkedList();
+		DoublyLinkedList<String> list = new DoublyLinkedList<String>();
+		DoublyLinkedList<String> list2 = new DoublyLinkedList<String>();
 		DoubleNode<String> p = null;
 		// a a b c e d a e f g a
 		// zbcd acd ef ha ag

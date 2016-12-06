@@ -1,5 +1,10 @@
 package exercise.algorithms4.e1_3;
 
+/**
+ * 可变数组实现字符串队列
+ * @author lsp
+ *
+ */
 public class ResizingArrayQueueOfString {
 
 	private String[] queue;
@@ -16,7 +21,7 @@ public class ResizingArrayQueueOfString {
 	 */
 	public void enqueue(String item) throws Exception{
 		if(n == queue.length){
-			queue = resize(2 * queue.length);
+			resize(2 * queue.length);
 		}
 		queue[n++] = item;
 	}
@@ -29,7 +34,7 @@ public class ResizingArrayQueueOfString {
 		if(isEmpty()){
 			throw new Exception("Underflow");
 		}else if(n < queue.length / 2){
-			queue = resize(queue.length / 2);
+			resize(queue.length / 2);
 		}
 		String item = queue[0];
 		for(int i = 0; i < n - 1; i++){
@@ -51,12 +56,12 @@ public class ResizingArrayQueueOfString {
 	 * @param newCap
 	 * @return
 	 */
-	private String[] resize(int newCap){
+	private void resize(int newCap){
 		String[] newQueue = new String[newCap];
 		for(int i = 0; i < n; i++){
 			newQueue[i] = queue[i];
 		}
-		return newQueue;
+		queue = newQueue;
 	}
 	
 }
