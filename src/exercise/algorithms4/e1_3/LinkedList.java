@@ -1,7 +1,10 @@
 package exercise.algorithms4.e1_3;
 
-import javax.xml.transform.Templates;
-
+/**
+ * µ•œÚ¡¥±Ì
+ * @author lsp
+ *
+ */
 public class LinkedList {
 
 	private Node<String> first;
