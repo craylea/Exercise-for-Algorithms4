@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * 可变数组实现双向队列
+ * 固定容量队列
  * @author lsp
  *
  * @param <T>
@@ -17,6 +17,17 @@ public class FixedCapacityQueue<T> implements Iterable<T>{
 	public FixedCapacityQueue(int cap) {
 		queue = (T[]) new Object[cap];
 		n = 0;
+	}
+	/**
+	 * 构造函数实现队列的拷贝
+	 * @param org
+	 */
+	public FixedCapacityQueue(FixedCapacityQueue<T> org) {
+		queue = (T[]) new Object[org.capcity()];
+		n = 0;
+		for(T item : org){
+			queue[n++] = item;
+		}
 	}
 	/**
 	 * 判断队列是否为空
@@ -38,6 +49,13 @@ public class FixedCapacityQueue<T> implements Iterable<T>{
 	 */
 	public int size(){
 		return n;
+	}
+	/**
+	 * 获取队列的容量
+	 * @return
+	 */
+	public int capcity(){
+		return queue.length;
 	}
 	/**
 	 * 从队列尾部入队

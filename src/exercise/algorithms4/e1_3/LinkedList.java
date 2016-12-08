@@ -10,7 +10,7 @@ public class LinkedList {
 	private Node<String> first;
 
 	public LinkedList() {
-		first = new Node<>();
+		first = null;
 	}
 
 	public LinkedList(String value) {
@@ -19,7 +19,7 @@ public class LinkedList {
 	}
 
 	/**
-	 * 往链表中添加节点
+	 * 从链表尾添加节点
 	 * 
 	 * @param value
 	 * @return
@@ -28,7 +28,8 @@ public class LinkedList {
 		Node<String> temp = new Node<>();
 		temp.value = value;
 
-		if (first.value == null) {
+		if (first == null) {
+			first = new Node<>();
 			first = temp;
 		} else {
 			Node<String> p = first;
