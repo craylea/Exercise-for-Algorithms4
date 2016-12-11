@@ -4,24 +4,21 @@ import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- * 
+ * 三个栈实现一个队列
+ * 实在不知道如何实现常数次栈操作。。。
  * @author lsp
  *
  */
-public class E1_3_38_LinkedListGeneralizedQueue {
+public class E1_3_49_QueueWith3Stack {
 
 	public static void main(String[] args) {
-		LinkedListGeneralizedQueue<String> queue = new LinkedListGeneralizedQueue();
+		QueueWith3Stack<String> queue = new QueueWith3Stack();
 		// zbcd acd ef ha ag
 		while (!StdIn.isEmpty()) {
 			String value = StdIn.readString();
-			queue.insert(value);
+			queue.enqueue(value);
 		}
-//		StdOut.print(queue.delete(3) + " ");
-//		while(!queue.isEmpty()){
-//			StdOut.print(queue.delete(1) + " ");
-//		}
-		StdOut.println(queue.delete(3) + " ");
+		StdOut.println();
 		for(String item : queue){
 			StdOut.print(item + " ");
 		}

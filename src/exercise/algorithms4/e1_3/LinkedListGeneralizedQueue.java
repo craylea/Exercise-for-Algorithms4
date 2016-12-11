@@ -1,12 +1,15 @@
 package exercise.algorithms4.e1_3;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * 泛型队列(链表实现)
  * @author lsp
  *
  * @param <T>
  */
-public class LinkedListGeneralizedQueue<T> {
+public class LinkedListGeneralizedQueue<T> implements Iterable<T>{
 
 	private Node<T> first;
 	private Node<T> last;
@@ -66,6 +69,38 @@ public class LinkedListGeneralizedQueue<T> {
 		}
 		n--;
 		return temp;
+	}
+	@Override
+	public Iterator<T> iterator() {
+		// TODO Auto-generated method stub
+		return new LinkedListGeneralizedQueueIterator();
+	}
+	
+	private class LinkedListGeneralizedQueueIterator implements Iterator<T>{
+
+		private int i;
+		private Node<T> p;
+		
+		public LinkedListGeneralizedQueueIterator(){
+			p = first;
+			i = 0;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return i < n;
+		}
+
+		@Override
+		public T next() {
+			if(!hasNext()) throw new NoSuchElementException();
+			T item = p.value;
+			p = p.next;
+			i++;
+			return item;
+		}
+		
 	}
 }
 

@@ -26,8 +26,13 @@ public class E1_3_32_Steque {
 		list.enqueue("b");
 		list.enqueue("c");
 		StdOut.println("\nsize: " + list.size());
-		while (!list.isEmpty()) {
-			StdOut.print(list.pop() + " ");
+//		while (!list.isEmpty()) {
+//			StdOut.print(list.pop() + " ");
+//		}
+		// E1_3_50
+		for(String item : list){
+			StdOut.print(item + " ");
+			list.enqueue("d");
 		}
 		StdOut.println("\nsize: " + list.size());
 	}

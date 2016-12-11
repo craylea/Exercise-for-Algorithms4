@@ -79,7 +79,7 @@ public class Deque<T> implements Iterable<T> {
 		
 		@Override
 		public boolean hasNext() {
-			return current != null && ((isFirst && current == first) || (!isFirst && current != first));
+			return current != null && (isFirst || current != first);
 		}
 
 		@Override

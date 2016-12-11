@@ -1,5 +1,6 @@
 package exercise.algorithms4.e1_3;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -14,11 +15,15 @@ public class StequeByLinkedList<T> implements Steque<T>, Iterable<T> {
 	private Node<T> first;
 	private Node<T> last;
 	private int n;
+	private int pushTimes;
+	private int popTimes;
 	
 	public StequeByLinkedList() {
 		first = null;
 		last = null;
 		n = 0;
+		pushTimes = 0;
+		popTimes = 0;
 	}
 	/**
 	 * 构造函数实现栈的拷贝
@@ -48,6 +53,7 @@ public class StequeByLinkedList<T> implements Steque<T>, Iterable<T> {
 			temp.next = first;
 			first = temp;
 		}
+		pushTimes++;
 		n++;
 	}
 
@@ -60,6 +66,7 @@ public class StequeByLinkedList<T> implements Steque<T>, Iterable<T> {
 			if(first == null) last = null;
 			n--;
 		}
+		popTimes++;
 		return item;
 	}
 
@@ -77,6 +84,7 @@ public class StequeByLinkedList<T> implements Steque<T>, Iterable<T> {
 			last.next = temp;
 			last = temp;
 		}
+		pushTimes++;
 		n++;
 	}
 
@@ -98,18 +106,34 @@ public class StequeByLinkedList<T> implements Steque<T>, Iterable<T> {
 	private class StequeByLinkedListIterator implements Iterator<T>{
 
 		private Node<T> first;
+		private int orgPushTimes;
+		private int orgPopTimes;
 		
 		public StequeByLinkedListIterator(Node<T> first){
 			this.first = first;
+			orgPushTimes = pushTimes;
+			orgPopTimes = popTimes;
 		}
 		
 		@Override
 		public boolean hasNext() {
+			if(orgPushTimes != pushTimes){
+				throw new ConcurrentModificationException("迭代期间进行了非法入栈操作！");
+			}
+			if(orgPopTimes != popTimes){
+				throw new ConcurrentModificationException("迭代期间进行了非法出栈操作！");
+			}
 			return this.first != null;
 		}
 
 		@Override
 		public T next() {
+			if(orgPushTimes != pushTimes){
+				throw new ConcurrentModificationException("迭代期间进行了非法入栈操作！");
+			}
+			if(orgPopTimes != popTimes){
+				throw new ConcurrentModificationException("迭代期间进行了非法出栈操作！");
+			}
 			if(!hasNext()) throw new NoSuchElementException();
 			T item = this.first.value;
 			this.first = this.first.next;

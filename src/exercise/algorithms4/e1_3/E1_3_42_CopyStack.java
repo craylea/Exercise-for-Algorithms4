@@ -17,8 +17,15 @@ public class E1_3_42_CopyStack {
 			String value = StdIn.readString();
 			stack.push(value);
 		}
-		
+		for(String item : stack){
+			StdOut.print(item + " ");
+		}
+		StdOut.println();
 		StequeByLinkedList<String> stack2 = new StequeByLinkedList<>(stack);
+		for(String item : stack2){
+			StdOut.print(item + " ");
+		}
+		StdOut.println();
 		StdOut.println("stack2 pop: " + stack2.pop());
 		StdOut.println("stack2 push: ha");
 		stack2.push("ha");
